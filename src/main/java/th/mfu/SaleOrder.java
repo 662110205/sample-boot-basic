@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class SaleOrder {
     @Id
@@ -17,6 +19,7 @@ public class SaleOrder {
     private String notes;
 
     @ManyToOne
+    @JsonBackReference
     private Customer customer;
 
     @ManyToMany

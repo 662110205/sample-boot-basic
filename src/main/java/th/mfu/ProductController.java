@@ -1,5 +1,6 @@
 package th.mfu;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
-
 @RestController
 public class ProductController {
 
@@ -24,15 +23,16 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable Long id){
-        if(!proRepo.existsById(id))
-            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
         Optional<Product> product = proRepo.findById(id);
+        if(product.isPresent()){
+            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+        }  
         return new ResponseEntity<Product>(product.get(), HttpStatus.OK);
     }
 
     @GetMapping("/products")
-    public ResponseEntity<Collection> getAllProduct(){
-        return new ResponseEntity<Collection>(HttpStatus.OK);
+    public ResponseEntity<Collection<Product>> getAllProducts(){
+        return new ResponseEntity<Collection<Product>>(proRepo.findAll(), HttpStatus.OK);
     }
 
     @PostMapping("/products")

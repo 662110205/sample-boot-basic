@@ -1,5 +1,6 @@
 package th.mfu;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.deser.std.CollectionDeserializer;
-import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 
 @RestController
 public class CustomerController { 
@@ -37,12 +37,15 @@ public class CustomerController {
 
     @GetMapping("/customers")
     public ResponseEntity<Collection> getAllCustomers(){
-        return new ResponseEntity<Collection>(HttpStatus.OK);
+        return new ResponseEntity<Collection>(custRepo.findAll(), HttpStatus.OK);
     }
 
     //POST for creating a customer 
     @PostMapping("/customers")
     public ResponseEntity<String> createCustomer(@RequestBody Customer customer){
+        if(!custRepo.findByName(customer.getName()).isEmpty()){
+            return new ResponseEntity<String>("Customer already exists", HttpStatus.CONFLICT);
+        }
         custRepo.save(customer);
         return new ResponseEntity<String>("Customer created", HttpStatus.CREATED);
     }

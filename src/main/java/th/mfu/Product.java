@@ -14,7 +14,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JsonProperty("productname")
+    // @JsonProperty("productname")
     private String name;
 
     private String description;

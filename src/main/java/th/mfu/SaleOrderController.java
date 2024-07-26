@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import th.mfu.domain.Customer;
+import th.mfu.domain.SaleOrder;
+import th.mfu.repository.CustomerRepository;
+import th.mfu.repository.SaleOrderRepository;
+
 @RestController
 public class SaleOrderController {
     @Autowired

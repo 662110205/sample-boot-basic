@@ -1,4 +1,4 @@
-package th.mfu;
+package th.mfu.dto;
 
 import java.io.IOException;
 import java.time.LocalDate;

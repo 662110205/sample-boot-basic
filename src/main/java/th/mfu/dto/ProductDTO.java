@@ -1,17 +1,7 @@
-package th.mfu;
+package th.mfu.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class ProductDTO {
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@Entity
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     private String name;
@@ -46,3 +36,4 @@ public class Product {
     }
 
 }
+

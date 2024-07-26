@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import th.mfu.domain.Customer;
 import th.mfu.domain.Product;
-import th.mfu.dto.CustomerDTO;
 import th.mfu.dto.ProductDTO;
 import th.mfu.dto.mapper.ProductMapper;
 import th.mfu.repository.ProductRepository;
